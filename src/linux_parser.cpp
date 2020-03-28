@@ -152,7 +152,7 @@ float LinuxParser::CpuUtilization(int pid) {
     linestream >> utime >> stime >> cutime >> cstime;
 
     int total_time = utime + stime + cutime + cstime;
-    utilization = (float)total_time / LinuxParser::UpTime(pid);
+    utilization = (float)total_time / (sysconf(_SC_CLK_TCK) * LinuxParser::UpTime(pid));
   }
 
   return utilization;
@@ -265,7 +265,7 @@ long LinuxParser::UpTime(int pid) {
   if (filestream.is_open()) {
     std::getline(filestream, line);
     std::istringstream linestream(line);
-    for (int i = 0; i < 23; i++) {
+    for (int i = 0; i < 22; i++) {
       linestream >> value;
     }
     long start_time = std::stol(value);
