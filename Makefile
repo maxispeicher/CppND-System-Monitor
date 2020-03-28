@@ -14,11 +14,12 @@ build:
 
 .PHONY: debug
 debug:
-	mkdir -p build
-	cd build && \
+	mkdir -p debug
+	cd debug && \
 	cmake -DCMAKE_BUILD_TYPE=debug .. && \
 	make
 
 .PHONY: clean
 clean:
 	rm -rf build
+	rm -rf debug
