@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <algorithm>
 #include <cstddef>
 #include <set>
 #include <string>
@@ -17,9 +18,10 @@ using std::vector;
 // DONE: Return the system's CPU
 Processor& System::Cpu() { return cpu_; }
 
-// TODO: Return a container composed of the system's processes
+// DONE: Return a container composed of the system's processes
 vector<Process>& System::Processes() {
   System::processes_ = LinuxParser::Processes();
+  std::sort(processes_.begin(), processes_.end());
   return System::processes_;
 }
 
