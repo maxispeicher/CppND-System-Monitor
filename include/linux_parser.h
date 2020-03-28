@@ -5,6 +5,8 @@
 #include <regex>
 #include <string>
 
+#include "process.h"
+
 namespace LinuxParser {
 // Paths
 const std::string kProcDirectory{"/proc/"};
@@ -41,12 +43,10 @@ enum CPUStates {
   kGuestNice_
 };
 float CpuUtilization();
-long Jiffies();
-long ActiveJiffies();
 long ActiveJiffies(int pid);
-long IdleJiffies();
 
 // Processes
+std::vector<Process> Processes();
 std::string Command(int pid);
 std::string Ram(int pid);
 std::string Uid(int pid);
